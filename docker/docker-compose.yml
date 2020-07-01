@@ -1,0 +1,24 @@
+version: '3.0'
+services:
+  sensor:
+    image: powerapi-sensor
+    privileged: true
+    network: host
+    volumes:
+      - /sys:/sys
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /tmp/powerapi-sensor-reporting:/reporting powerapi/hwpc-sensor
+      - /tmp/sensor_output:/tmp/sensor_output
+    networks:
+      hostnet: {}
+    links:
+    - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+
+networks:
+  hostnet:
+    external: true
+    name: host
