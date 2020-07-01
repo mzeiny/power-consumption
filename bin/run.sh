@@ -29,5 +29,5 @@ docker run -td --name powerapi-formula --link mongodb --link influxdb powerapi/r
 
 sleep 30
 
-(cd app-sensor/app-sensor && ./bin/run.sh)
+(cd power-consumption/app-sensor && ./bin/run.sh)
 docker run -d -p 3000:3000 --link influxdb grafana/grafana
